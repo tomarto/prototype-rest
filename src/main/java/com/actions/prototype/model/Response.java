@@ -15,7 +15,8 @@ public class Response<T> implements Serializable {
 	private static final long serialVersionUID = -688131667179924029L;
 	
 	private T result;
-	private long errorTime;
+	private String errorMessage;
+	private Long errorTime;
 	
 	/**
 	 * <p>
@@ -34,13 +35,13 @@ public class Response<T> implements Serializable {
 	 * Constructor for Response.
 	 * </p>
 	 * 
-	 * @param result
-	 *            a {@link T} object.
+	 * @param errorMessage
+	 *            a {@link java.lang.String} object.
 	 * @param errorTime
-	 *            a {@link T} object.
+	 *            a {@link java.lang.Long} object.
 	 */
-	public Response(T result, long errorTime) {
-		this.result = result;
+	public Response(String errorMessage, Long errorTime) {
+		this.errorMessage = errorMessage;
 		this.errorTime = errorTime;
 	}
 
@@ -52,9 +53,16 @@ public class Response<T> implements Serializable {
 	}
 	
 	/**
+	 * @return the errorMessage
+	 */
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+	
+	/**
 	 * @return the errorTime
 	 */
-	public long getErrorTime() {
+	public Long getErrorTime() {
 		return errorTime;
 	}
 }

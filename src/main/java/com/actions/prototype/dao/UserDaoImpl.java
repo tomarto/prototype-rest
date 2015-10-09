@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.actions.prototype.exception.user.UserException;
 import com.actions.prototype.model.User;
 
 /**
@@ -62,20 +63,23 @@ public class UserDaoImpl implements UserDao {
 	/** {@inheritDoc} */
 	@Override
 	public int insert(User user) {
-		final MapSqlParameterSource userParamMap = new MapSqlParameterSource();
-		userParamMap.addValue("username", user.getUsername());
-		userParamMap.addValue("firstName", user.getFirstName());
-		userParamMap.addValue("lastName", user.getLastName());
-		userParamMap.addValue("password", user.getPassword());
-		userParamMap.addValue("email", user.getEmail());
-		userParamMap.addValue("birthDate", user.getBirthDate());
-		if(jdbcTemplate.update("INSERT INTO User VALUES(:username, :firstName, :lastName, :password, :email, :birthDate, TRUE)", userParamMap) == 1) {
-			final MapSqlParameterSource userRoleParamMap = new MapSqlParameterSource();
-			userRoleParamMap.addValue("username", user.getUsername());
-			userRoleParamMap.addValue("role", user.getType());
-			return jdbcTemplate.update("INSERT INTO User_roles(username, role) VALUES(:username, :role);", userRoleParamMap);
+		if(findByUsername(user.getUsername()) == null) {
+			final MapSqlParameterSource userParamMap = new MapSqlParameterSource();
+			userParamMap.addValue("username", user.getUsername());
+			userParamMap.addValue("firstName", user.getFirstName());
+			userParamMap.addValue("lastName", user.getLastName());
+			userParamMap.addValue("password", user.getPassword());
+			userParamMap.addValue("email", user.getEmail());
+			userParamMap.addValue("birthDate", user.getBirthDate());
+			if(jdbcTemplate.update("INSERT INTO User VALUES(:username, :firstName, :lastName, :password, :email, :birthDate, TRUE)", userParamMap) == 1) {
+				final MapSqlParameterSource userRoleParamMap = new MapSqlParameterSource();
+				userRoleParamMap.addValue("username", user.getUsername());
+				userRoleParamMap.addValue("role", user.getType());
+				return jdbcTemplate.update("INSERT INTO User_roles(username, role) VALUES(:username, :role);", userRoleParamMap);
+			}
+			return 0;
 		}
-		return 0;
+		throw new UserException("Username already exist. Please use another one.");
 	}
 	
 	/** {@inheritDoc} */

@@ -2,14 +2,13 @@ package com.actions.prototype.exception;
 
 import java.time.Instant;
 
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.actions.prototype.exception.user.UserException;
 import com.actions.prototype.model.Response;
 
 /**
@@ -20,8 +19,9 @@ import com.actions.prototype.model.Response;
  * @author Rafael Ortiz.
  */
 @ControllerAdvice
-public class AppExceptionHandler extends ResponseEntityExceptionHandler {
+public class AppExceptionHandler {
 
+	private static final Logger LOGGER = Logger.getLogger(AppExceptionHandler.class);
 	/**
 	 * <p>
 	 * Intercepts exceptions and return a Response object with status 500.
@@ -29,9 +29,17 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 	 * 
 	 * @return a {@link com.actions.prototype.model.Response<String>} object.
 	 */
-	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Error in operation")
-	@ExceptionHandler({ UserException.class })
-	protected Response<String> handleException(RuntimeException e, WebRequest request) {
-		return new Response<>(e.getMessage(), Instant.now().toEpochMilli());
+	@ExceptionHandler(value = RuntimeException.class)
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	@ResponseBody
+	protected Response<String> defaultErrorHandler(RuntimeException e) {
+		final long error = Instant.now().toEpochMilli();
+		final StringBuilder stackTrace = new StringBuilder();
+		for(StackTraceElement element : e.getStackTrace()) {
+			stackTrace.append(element + "\r\n");
+		}
+		LOGGER.warn(String.format("Error code: %s - Stack trace: %s", error, stackTrace));
+		
+		return new Response<>(e.getMessage(), error);
 	}
 }

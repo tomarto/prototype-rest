@@ -2,6 +2,7 @@ package com.actions.prototype.controller;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 import javax.validation.Valid;
 
@@ -73,7 +74,7 @@ public class UserController {
 	 * 
 	 * @return a {@link com.actions.prototype.model.Response<User>} object.
 	 */
-	@RequestMapping(value = "/user/update", method = POST, produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/user/update", method = PUT, produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
 	public @ResponseBody Response<User> update(@Valid @RequestBody UserRequest request) {
 		return new Response<>(service.update(getLoggedUsername(), request.buildUser()));
 	}
