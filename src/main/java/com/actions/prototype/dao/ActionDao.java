@@ -2,6 +2,8 @@ package com.actions.prototype.dao;
 
 import java.util.List;
 
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+
 import com.actions.prototype.model.Action;
 
 /**
@@ -51,4 +53,9 @@ public interface ActionDao {
 	 *            a {@link java.lang.Integer} object.
 	 */
 	void delete(Integer id);
+	
+	/**
+	 * @param name the name to set. For unit test purposes.
+	 */
+	void setJdbcTemplate(NamedParameterJdbcTemplate jdbcTemplate);
 }

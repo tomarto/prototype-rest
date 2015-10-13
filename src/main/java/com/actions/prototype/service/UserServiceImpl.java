@@ -41,10 +41,10 @@ public class UserServiceImpl implements UserService {
 	/** {@inheritDoc} */
 	@Override
 	public User insert(User user) {
-		if(dao.insert(user) != 1) {
-			throw new UserException("An error occured while registering user.");
+		if(dao.insert(user) == 1) {
+			return user;
 		}
-		return user;
+		throw new UserException("An error occured while registering user.");
 	}
 	
 	/** {@inheritDoc} */

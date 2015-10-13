@@ -95,4 +95,9 @@ public class UserDaoImpl implements UserDao {
 		return jdbcTemplate.update("UPDATE User SET username = :username, first_name = :firstName, last_name = :lastName, "
 				+ "password = :password, email = :email, birth_date = :birthDate, enabled = :enabled", paramMap);
 	}
+	
+	/** {@inheritDoc} */
+	public void setJdbcTemplate(NamedParameterJdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 }

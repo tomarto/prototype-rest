@@ -48,7 +48,7 @@ public class ActionServiceImpl implements ActionService {
 	/** {@inheritDoc} */
 	@Override
 	public void update(Action action) {
-		dao.insert(action);
+		dao.update(action);
 	}
 
 	/** {@inheritDoc} */

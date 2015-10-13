@@ -77,4 +77,9 @@ public class ActionDaoImpl implements ActionDao {
 	public void delete(Integer id) {
 		jdbcTemplate.update("DELETE FROM Action WHERE id = :id", new MapSqlParameterSource("id", id));
 	}
+	
+	/** {@inheritDoc} */
+	public void setJdbcTemplate(NamedParameterJdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 }

@@ -1,5 +1,7 @@
 package com.actions.prototype.dao;
 
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+
 import com.actions.prototype.model.User;
 
 /**
@@ -46,4 +48,9 @@ public interface UserDao {
 	 * @return an int primitive type.
 	 */
 	int update(User user);
+	
+	/**
+	 * @param name the name to set. For unit test purposes.
+	 */
+	void setJdbcTemplate(NamedParameterJdbcTemplate jdbcTemplate);
 }
