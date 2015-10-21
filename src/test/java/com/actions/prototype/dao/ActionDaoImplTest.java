@@ -22,6 +22,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import com.actions.prototype.model.Action;
+import com.actions.prototype.model.ActionRequest;
 
 /**
  * <p>
@@ -59,7 +60,7 @@ public class ActionDaoImplTest {
 		final List<Action> list = new ArrayList<>();
 		list.add(new Action());
 		when(jdbcTemplate.query(anyString(), any(MapSqlParameterSource.class), any(RowMapper.class))).thenReturn(list);
-		final List<Action> result = dao.findAll();
+		final List<Action> result = dao.findAll(new ActionRequest());
 		assertNotNull(result);
 		assertFalse(result.isEmpty());
 	}

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.actions.prototype.dao.ActionDao;
 import com.actions.prototype.model.Action;
+import com.actions.prototype.model.ActionRequest;
 
 /**
  * <p>
@@ -35,8 +36,8 @@ public class ActionServiceImpl implements ActionService {
 
 	/** {@inheritDoc} */
 	@Override
-	public List<Action> findAll() {
-		return dao.findAll();
+	public List<Action> findAll(ActionRequest request) {
+		return dao.findAll(request);
 	}
 
 	/** {@inheritDoc} */

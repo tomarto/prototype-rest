@@ -5,12 +5,15 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.actions.prototype.model.Action;
+import com.actions.prototype.model.ActionRequest;
 import com.actions.prototype.model.Response;
 import com.actions.prototype.service.ActionService;
 
@@ -44,10 +47,10 @@ public class ActionController {
 	 * Retrieves all the Action records from database.
 	 * </p>
 	 * 
-	 * @return a {@link java.util.List<Action>} object.
+	 * @return a {@link com.actions.prototype.model.Response<List<Action>>} object.
 	 */
 	@RequestMapping(value = "/actions", method = GET, produces = APPLICATION_JSON_VALUE)
-	public @ResponseBody Response<List<Action>> findAll() {
-		return new Response<>(service.findAll());
+	public @ResponseBody Response<List<Action>> findAll(@Valid ActionRequest request) {
+		return new Response<>(service.findAll(request));
 	}
 }

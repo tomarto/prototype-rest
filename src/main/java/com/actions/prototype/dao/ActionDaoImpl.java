@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.actions.prototype.model.Action;
+import com.actions.prototype.model.ActionRequest;
 
 /**
  * <p>
@@ -38,8 +39,8 @@ public class ActionDaoImpl implements ActionDao {
 	
 	/** {@inheritDoc} */
 	@Override
-	public List<Action> findAll() {
-		return jdbcTemplate.query("SELECT * FROM Action", new MapSqlParameterSource(),
+	public List<Action> findAll(ActionRequest request) {
+		return jdbcTemplate.query(request.getQueryString(), request.getSqlParamMap(),
 				(rs, rowNum) -> {
 					final Action action = new Action();
 					action.setId(rs.getInt("id"));

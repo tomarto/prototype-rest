@@ -16,6 +16,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import com.actions.prototype.dao.ActionDao;
 import com.actions.prototype.model.Action;
+import com.actions.prototype.model.ActionRequest;
 
 /**
  * <p>
@@ -45,10 +46,11 @@ public class ActionServiceImplTest {
 	 */
 	@Test
 	public void testFindAll() {
+		final ActionRequest request = new ActionRequest();
 		final List<Action> list = new ArrayList<>();
 		list.add(new Action());
-		when(dao.findAll()).thenReturn(list);
-		final List<Action> result = service.findAll();
+		when(dao.findAll(request)).thenReturn(list);
+		final List<Action> result = service.findAll(request);
 		assertNotNull(result);
 		assertFalse(result.isEmpty());
 	}

@@ -15,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.actions.prototype.model.Action;
+import com.actions.prototype.model.ActionRequest;
 import com.actions.prototype.model.Response;
 import com.actions.prototype.service.ActionService;
 
@@ -46,10 +47,11 @@ public class ActionControllerTest {
 	 */
 	@Test
 	public void testFindAll() {
+		final ActionRequest request = new ActionRequest();
 		final List<Action> list = new ArrayList<>();
 		list.add(new Action());
-		when(service.findAll()).thenReturn(list);
-		final Response<List<Action>> result = ctrl.findAll();
+		when(service.findAll(request)).thenReturn(list);
+		final Response<List<Action>> result = ctrl.findAll(request);
 		assertNotNull(result);
 		assertNull(result.getErrorTime());
 		assertFalse(result.getResult().isEmpty());

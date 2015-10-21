@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import com.actions.prototype.model.Action;
+import com.actions.prototype.model.ActionRequest;
 
 /**
  * <p>
@@ -20,9 +21,12 @@ public interface ActionDao {
 	 * Retrieves all the Action records from database.
 	 * </p>
 	 * 
+	 * @param request
+	 *            a {@link com.actions.prototype.model.ActionRequest} object.
+	 *            
 	 * @return a {@link java.util.List<Action>} object.
 	 */
-	List<Action> findAll();
+	List<Action> findAll(ActionRequest request);
 	
 	/**
 	 * <p>
