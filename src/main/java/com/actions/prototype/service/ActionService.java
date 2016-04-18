@@ -10,7 +10,7 @@ import com.actions.prototype.model.ActionRequest;
  * ActionService interface.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 public interface ActionService {
 	

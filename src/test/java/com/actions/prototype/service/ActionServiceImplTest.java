@@ -23,12 +23,13 @@ import com.actions.prototype.model.ActionRequest;
  * ActionServiceImplTest class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @RunWith(MockitoJUnitRunner.class)
 public class ActionServiceImplTest {
 
 	private ActionService service;
+	private Action action;
 	
 	@Mock
 	private ActionDao dao;
@@ -38,6 +39,7 @@ public class ActionServiceImplTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		action = Action.builder().build();
 		service = new ActionServiceImpl(dao);
 	}
 
@@ -48,7 +50,7 @@ public class ActionServiceImplTest {
 	public void testFindAll() {
 		final ActionRequest request = new ActionRequest();
 		final List<Action> list = new ArrayList<>();
-		list.add(new Action());
+		list.add(action);
 		when(dao.findAll(request)).thenReturn(list);
 		final List<Action> result = service.findAll(request);
 		assertNotNull(result);
@@ -60,7 +62,6 @@ public class ActionServiceImplTest {
 	 */
 	@Test
 	public void testInsert() {
-		final Action action = new Action();
 		service.insert(action);
 		verify(dao).insert(action);
 	}
@@ -70,7 +71,6 @@ public class ActionServiceImplTest {
 	 */
 	@Test
 	public void testUpdate() {
-		final Action action = new Action();
 		service.update(action);
 		verify(dao).update(action);
 	}

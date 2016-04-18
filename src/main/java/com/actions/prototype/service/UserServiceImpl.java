@@ -12,7 +12,7 @@ import com.actions.prototype.model.User;
  * UserServiceImpl class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @Service
 public class UserServiceImpl implements UserService {
@@ -41,9 +41,10 @@ public class UserServiceImpl implements UserService {
 	/** {@inheritDoc} */
 	@Override
 	public User insert(User user) {
-		if(dao.insert(user) == 1) {
+		if (dao.insert(user) == 1) {
 			return user;
 		}
+		
 		throw new UserException("An error occured while registering user.");
 	}
 	
@@ -51,12 +52,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User update(String loggedUsername, User user) {
 		final User old = dao.findByUsername(loggedUsername);
-		if(old == null) {
+		if (old == null) {
 			throw new UserException("User not found.");
 		}
-		if(!old.getType().equals(user.getType()) || dao.update(user) != 1) {
+		if (!old.getType().equals(user.getType()) || dao.update(user) != 1) {
 			throw new UserException("An error occured while updating user.");
 		}
+		
 		return user;
 	}
 }

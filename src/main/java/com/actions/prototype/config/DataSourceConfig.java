@@ -12,10 +12,9 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
  * DataSourceConfig class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @Configuration
-//@EnableJpaRepositories(basePackages = "com.actions.prototype")
 public class DataSourceConfig {
 	
 	/**
@@ -30,26 +29,4 @@ public class DataSourceConfig {
 		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL).
 				addScript("db.sql").build();
 	}
-	
-//	@Bean
-//	public EntityManagerFactory entityManagerFactory() {
-//		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-//		vendorAdapter.setGenerateDdl(true);
-//
-//		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-//		factory.setJpaVendorAdapter(vendorAdapter);
-//		factory.setPackagesToScan("com.actions.prototype");
-//		factory.setPersistenceUnitName("hsql");
-//		factory.setDataSource(dataSource());
-//		factory.afterPropertiesSet();
-//
-//		return factory.getObject();
-//	}
-//
-//	@Bean
-//	public JpaTransactionManager transactionManager() {
-//		JpaTransactionManager txManager = new JpaTransactionManager();
-//		txManager.setEntityManagerFactory(entityManagerFactory());
-//		return txManager;
-//	}
 }

@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import com.actions.prototype.common.JsonDateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -20,9 +21,10 @@ import lombok.Data;
  * Action class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @Data
+@Builder
 @Entity
 @Table(name = "Action")
 public class Action implements Serializable {

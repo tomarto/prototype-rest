@@ -23,7 +23,7 @@ import com.actions.prototype.service.UserService;
  * UserController class. Controller defining a RESTful API.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @Controller
 public class UserController {

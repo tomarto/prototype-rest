@@ -18,7 +18,7 @@ import lombok.Setter;
  * UserRequest class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @Setter
 public class UserRequest implements Serializable {
@@ -55,17 +55,17 @@ public class UserRequest implements Serializable {
 	private String userType;
 	
 	public User buildUser() {
-		if(password.equals(passwordConfirmation)) {
-			final User user = new User();
-			user.setUsername(username);
-			user.setFirstName(firstName);
-			user.setLastName(lastName);
-			user.setPassword(password);
-			user.setEmail(StringUtils.isBlank(email) ? null : email);
-			user.setBirthDate(birthDate);
-			user.setType(StringUtils.isBlank(userType) ? "ROLE_USER" : userType);
-			return user;
+		if (password.equals(passwordConfirmation)) {
+			return User.builder()
+				.username(username)
+				.firstName(firstName)
+				.lastName(lastName)
+				.password(password)
+				.email(StringUtils.isBlank(email) ? null : email)
+				.birthDate(birthDate)
+				.type(StringUtils.isBlank(userType) ? "ROLE_USER" : userType).build();
 		}
+		
 		throw new UserException("An error ocurred. Please verify the fields.");
 	}
 }

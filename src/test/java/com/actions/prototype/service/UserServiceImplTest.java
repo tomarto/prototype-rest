@@ -19,7 +19,7 @@ import com.actions.prototype.model.User;
  * UserServiceImplTest class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceImplTest {
@@ -27,6 +27,7 @@ public class UserServiceImplTest {
 	private static final String USERNAME = "Username";
 	private static final String ADMIN = "ADMIN";
 	private UserService service;
+	private User user;
 	
 	@Mock
 	private UserDao dao;
@@ -36,6 +37,7 @@ public class UserServiceImplTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		user = User.builder().build();
 		service = new UserServiceImpl(dao);
 	}
 
@@ -44,7 +46,7 @@ public class UserServiceImplTest {
 	 */
 	@Test
 	public void testGetUser() {
-		when(dao.findByUsername(USERNAME)).thenReturn(new User());
+		when(dao.findByUsername(USERNAME)).thenReturn(user);
 		final User result = service.getUser(USERNAME);
 		assertNotNull(result);
 	}
@@ -54,7 +56,6 @@ public class UserServiceImplTest {
 	 */
 	@Test
 	public void testInsert() {
-		final User user = new User();
 		when(dao.insert(user)).thenReturn(1);
 		User result = service.insert(user);
 		assertNotNull(result);
@@ -66,7 +67,6 @@ public class UserServiceImplTest {
 	 */
 	@Test(expected = UserException.class)
 	public void testInsertUserException() {
-		final User user = new User();
 		when(dao.insert(user)).thenReturn(0);
 		service.insert(user);
 	}
@@ -76,9 +76,8 @@ public class UserServiceImplTest {
 	 */
 	@Test
 	public void testUpdate() {
-		final User old = new User();
+		final User old = User.builder().build();
 		old.setType(ADMIN);
-		final User user = new User();
 		user.setType(ADMIN);
 		when(dao.findByUsername(USERNAME)).thenReturn(old);
 		when(dao.update(user)).thenReturn(1);
@@ -93,7 +92,7 @@ public class UserServiceImplTest {
 	@Test(expected = UserException.class)
 	public void testUpdateUserException() {
 		when(dao.findByUsername(USERNAME)).thenReturn(null);
-		service.update(USERNAME, new User());
+		service.update(USERNAME, user);
 	}
 	
 	/**
@@ -101,9 +100,8 @@ public class UserServiceImplTest {
 	 */
 	@Test(expected = UserException.class)
 	public void testUpdateUserException2() {
-		final User old = new User();
+		final User old = User.builder().build();
 		old.setType("USER");
-		final User user = new User();
 		user.setType(ADMIN);
 		when(dao.findByUsername(USERNAME)).thenReturn(old);
 		when(dao.update(user)).thenReturn(1);

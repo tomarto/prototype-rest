@@ -24,7 +24,7 @@ import com.actions.prototype.service.ActionService;
  * ActionControllerTest class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @RunWith(MockitoJUnitRunner.class)
 public class ActionControllerTest {
@@ -49,7 +49,7 @@ public class ActionControllerTest {
 	public void testFindAll() {
 		final ActionRequest request = new ActionRequest();
 		final List<Action> list = new ArrayList<>();
-		list.add(new Action());
+		list.add(Action.builder().build());
 		when(service.findAll(request)).thenReturn(list);
 		final Response<List<Action>> result = ctrl.findAll(request);
 		assertNotNull(result);

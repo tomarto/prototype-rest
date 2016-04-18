@@ -20,7 +20,7 @@ import org.springframework.web.servlet.DispatcherServlet;
  * WebAppInitializer class. Root Web Configuration.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 public class WebAppInitializer implements WebApplicationInitializer {
 	

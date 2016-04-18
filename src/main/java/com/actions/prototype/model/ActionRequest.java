@@ -16,7 +16,7 @@ import lombok.Data;
  * ActionRequest class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @Data
 public class ActionRequest implements Serializable {

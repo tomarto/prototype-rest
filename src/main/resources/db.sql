@@ -8,7 +8,7 @@ CREATE TABLE User (
 	enabled BOOLEAN DEFAULT TRUE NOT NULL
 );
 
-INSERT INTO User VALUES('rafael.ortiz', 'Rafael', 'Ortiz', '123456', 'rafael.ortiz@test.com', TO_DATE('11-23-1990', 'MM-DD-YYYY'), TRUE);
+INSERT INTO User VALUES('omar.ortiz', 'Omar', 'Ortiz', '123456', 'omar.ortiz@test.com', TO_DATE('11-23-1990', 'MM-DD-YYYY'), TRUE);
 
 
 CREATE TABLE User_roles (
@@ -19,7 +19,7 @@ CREATE TABLE User_roles (
 );
 
 CREATE UNIQUE INDEX uni_username_role ON User_roles(role, username);
-INSERT INTO User_roles(username, role) VALUES('rafael.ortiz', 'ROLE_ADMIN');
+INSERT INTO User_roles(username, role) VALUES('omar.ortiz', 'ROLE_ADMIN');
 
 
 CREATE TABLE Action (

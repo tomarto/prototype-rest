@@ -1,5 +1,12 @@
 package com.actions.prototype.exception.user;
 
+/**
+ * <p>
+ * UserException class.
+ * </p>
+ * 
+ * @author Omar Ortiz.
+ */
 public class UserException extends RuntimeException {
 
 	/** Constant <code>serialVersionUID=-1169184238225423021L</code> */

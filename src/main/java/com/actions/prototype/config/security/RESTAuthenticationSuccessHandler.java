@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  * RESTAuthenticationSuccessHandler class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @Component
 public class RESTAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {

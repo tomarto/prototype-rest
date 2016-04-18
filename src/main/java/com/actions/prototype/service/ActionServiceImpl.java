@@ -14,7 +14,7 @@ import com.actions.prototype.model.ActionRequest;
  * ActionServiceImpl class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @Service
 public class ActionServiceImpl implements ActionService {

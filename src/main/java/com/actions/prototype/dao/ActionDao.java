@@ -12,7 +12,7 @@ import com.actions.prototype.model.ActionRequest;
  * ActionDao interface.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 public interface ActionDao {
 	

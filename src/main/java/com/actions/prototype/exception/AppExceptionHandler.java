@@ -17,7 +17,7 @@ import com.actions.prototype.model.Response;
  * AppExceptionHandler class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @ControllerAdvice
 public class AppExceptionHandler {

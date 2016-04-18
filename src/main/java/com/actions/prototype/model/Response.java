@@ -9,7 +9,7 @@ import lombok.Getter;
  * Response class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @Getter
 public class Response<T> implements Serializable {

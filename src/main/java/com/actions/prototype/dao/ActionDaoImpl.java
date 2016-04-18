@@ -17,7 +17,7 @@ import com.actions.prototype.model.ActionRequest;
  * ActionDaoImpl class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @Repository
 public class ActionDaoImpl implements ActionDao {
@@ -42,12 +42,11 @@ public class ActionDaoImpl implements ActionDao {
 	public List<Action> findAll(ActionRequest request) {
 		return jdbcTemplate.query(request.getQueryString(), request.getSqlParamMap(),
 				(rs, rowNum) -> {
-					final Action action = new Action();
-					action.setId(rs.getInt("id"));
-					action.setName(rs.getString("name"));
-					action.setCreatedDate(rs.getDate("created_date"));
-					action.setDueDate(rs.getDate("due_date"));
-					return action;
+					return Action.builder()
+						.id(rs.getInt("id"))
+						.name(rs.getString("name"))
+						.createdDate(rs.getDate("created_date"))
+						.dueDate(rs.getDate("due_date")).build();
 				});
 	}
 	

@@ -12,6 +12,7 @@ import com.actions.prototype.common.JsonDateSerializer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -19,9 +20,10 @@ import lombok.Data;
  * User class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @Data
+@Builder
 @Entity
 @Table(name = "User")
 public class User implements Serializable {

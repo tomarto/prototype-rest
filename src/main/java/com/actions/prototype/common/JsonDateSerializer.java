@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
  * JsonDateSerializer class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 public class JsonDateSerializer extends JsonSerializer<Date> {
 	

@@ -22,7 +22,7 @@ import com.actions.prototype.service.ActionService;
  * ActionController class. Controller defining a RESTful API.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @Controller
 public class ActionController {

@@ -29,12 +29,13 @@ import com.actions.prototype.model.ActionRequest;
  * ActionDaoImplTest class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @RunWith(MockitoJUnitRunner.class)
 public class ActionDaoImplTest {
 
 	private ActionDao dao;
+	private Action action;
 	
 	@Mock
 	private NamedParameterJdbcTemplate jdbcTemplate;
@@ -47,6 +48,7 @@ public class ActionDaoImplTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		action = Action.builder().build();
 		dao = new ActionDaoImpl(dataSource);
 		dao.setJdbcTemplate(jdbcTemplate);
 	}
@@ -58,7 +60,7 @@ public class ActionDaoImplTest {
 	@Test
 	public void testFindAll() {
 		final List<Action> list = new ArrayList<>();
-		list.add(new Action());
+		list.add(action);
 		when(jdbcTemplate.query(anyString(), any(MapSqlParameterSource.class), any(RowMapper.class))).thenReturn(list);
 		final List<Action> result = dao.findAll(new ActionRequest());
 		assertNotNull(result);
@@ -70,7 +72,7 @@ public class ActionDaoImplTest {
 	 */
 	@Test
 	public void testInsert() {
-		dao.insert(new Action());
+		dao.insert(action);
 		verify(jdbcTemplate).update(anyString(), any(MapSqlParameterSource.class));
 	}
 
@@ -79,7 +81,7 @@ public class ActionDaoImplTest {
 	 */
 	@Test
 	public void testUpdate() {
-		dao.update(new Action());
+		dao.update(action);
 		verify(jdbcTemplate).update(anyString(), any(MapSqlParameterSource.class));
 	}
 

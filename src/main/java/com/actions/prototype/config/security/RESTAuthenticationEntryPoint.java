@@ -9,6 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 
+/**
+ * <p>
+ * RESTAuthenticationEntryPoint class.
+ * </p>
+ * 
+ * @author Omar Ortiz.
+ */
 public class RESTAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
 	@Override

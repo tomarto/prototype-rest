@@ -27,13 +27,14 @@ import com.actions.prototype.model.User;
  * UserDaoImplTest class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @RunWith(MockitoJUnitRunner.class)
 public class UserDaoImplTest {
 
 	private static final String USERNAME = "Username";
 	private UserDao dao;
+	private User user;
 	
 	@Mock
 	private NamedParameterJdbcTemplate jdbcTemplate;
@@ -46,6 +47,7 @@ public class UserDaoImplTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		user = User.builder().build();
 		dao = new UserDaoImpl(dataSource);
 		dao.setJdbcTemplate(jdbcTemplate);
 	}
@@ -57,7 +59,7 @@ public class UserDaoImplTest {
 	@Test
 	public void testFindByUsername() {
 		when(jdbcTemplate.queryForObject(anyString(), any(MapSqlParameterSource.class), any(RowMapper.class)))
-				.thenReturn(new User());
+				.thenReturn(user);
 		assertNotNull(dao.findByUsername(USERNAME));
 		when(jdbcTemplate.queryForObject(anyString(), any(MapSqlParameterSource.class), any(RowMapper.class)))
 				.thenThrow(new IncorrectResultSizeDataAccessException(0));
@@ -70,7 +72,6 @@ public class UserDaoImplTest {
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testInsert() {
-		final User user = new User();
 		user.setUsername(USERNAME);
 		when(jdbcTemplate.queryForObject(anyString(), any(MapSqlParameterSource.class), any(RowMapper.class)))
 				.thenReturn(null);
@@ -86,7 +87,6 @@ public class UserDaoImplTest {
 	@SuppressWarnings("unchecked")
 	@Test(expected = UserException.class)
 	public void testInsertUserException() {
-		final User user = new User();
 		user.setUsername(USERNAME);
 		when(jdbcTemplate.queryForObject(anyString(), any(MapSqlParameterSource.class), any(RowMapper.class)))
 				.thenReturn(user);
@@ -99,6 +99,6 @@ public class UserDaoImplTest {
 	@Test
 	public void testUpdate() {
 		when(jdbcTemplate.update(anyString(), any(MapSqlParameterSource.class))).thenReturn(1);
-		assertEquals(1, dao.update(new User()));
+		assertEquals(1, dao.update(user));
 	}
 }

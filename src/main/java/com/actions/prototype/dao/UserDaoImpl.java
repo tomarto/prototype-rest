@@ -16,7 +16,7 @@ import com.actions.prototype.model.User;
  * UserDaoImpl class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -45,15 +45,14 @@ public class UserDaoImpl implements UserDao {
 					+ "FROM User u JOIN User_roles ur ON (u.username = ur.username) WHERE u.username = :username AND u.enabled = TRUE",
 					new MapSqlParameterSource("username", username),
 					(rs, rowNum) -> {
-						final User user = new User();
-						user.setUsername(rs.getString("username"));
-						user.setFirstName(rs.getString("firstName"));
-						user.setLastName(rs.getString("lastName"));
-						user.setPassword(rs.getString("password"));
-						user.setEmail(rs.getString("email"));
-						user.setBirthDate(rs.getDate("birthDate"));
-						user.setType(rs.getString("role"));
-						return user;
+						return User.builder()
+							.username(rs.getString("username"))
+							.firstName(rs.getString("firstName"))
+							.lastName(rs.getString("lastName"))
+							.password(rs.getString("password"))
+							.email(rs.getString("email"))
+							.birthDate(rs.getDate("birthDate"))
+							.type(rs.getString("role")).build();
 					});
 		} catch(IncorrectResultSizeDataAccessException e) {
 			return null;

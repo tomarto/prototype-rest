@@ -23,7 +23,7 @@ import com.actions.prototype.service.UserService;
  * UserControllerTest class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @RunWith(MockitoJUnitRunner.class)
 public class UserControllerTest {
@@ -64,7 +64,7 @@ public class UserControllerTest {
 	 */
 	@Test
 	public void testFind() {
-		when(service.getUser(USERNAME)).thenReturn(new User());
+		when(service.getUser(USERNAME)).thenReturn(User.builder().build());
 		final Response<User> result = ctrl.find();
 		assertNotNull(result);
 		assertNull(result.getErrorTime());

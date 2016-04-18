@@ -18,7 +18,7 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
  * AppSecurityAdapter class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 @Configuration
 @EnableWebSecurity
@@ -60,7 +60,7 @@ public class AppSecurityAdapter extends WebSecurityConfigurerAdapter {
 			.and()
 				.logout()
 					.logoutSuccessHandler((httpServletRequest, httpServletResponse, authentication) -> {
-						if(authentication != null && authentication.getDetails() != null) {
+						if (authentication != null && authentication.getDetails() != null) {
 							 httpServletRequest.getSession().invalidate();
 						}
 						httpServletResponse.setStatus(HttpServletResponse.SC_OK);

@@ -9,7 +9,7 @@ import com.actions.prototype.model.User;
  * UserDao interface.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 public interface UserDao {
 

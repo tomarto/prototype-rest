@@ -5,7 +5,7 @@ package com.actions.prototype.config.security;
  * RESTLogoutSuccessHandler class.
  * </p>
  * 
- * @author Rafael Ortiz.
+ * @author Omar Ortiz.
  */
 public class RESTLogoutSuccessHandler {
 
