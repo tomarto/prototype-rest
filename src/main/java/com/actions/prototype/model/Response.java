@@ -2,6 +2,8 @@ package com.actions.prototype.model;
 
 import java.io.Serializable;
 
+import lombok.Getter;
+
 /**
  * <p>
  * Response class.
@@ -9,6 +11,7 @@ import java.io.Serializable;
  * 
  * @author Rafael Ortiz.
  */
+@Getter
 public class Response<T> implements Serializable {
 
 	/** Constant <code>serialVersionUID=-688131667179924029L</code> */
@@ -43,26 +46,5 @@ public class Response<T> implements Serializable {
 	public Response(String errorMessage, Long errorTime) {
 		this.errorMessage = errorMessage;
 		this.errorTime = errorTime;
-	}
-
-	/**
-	 * @return the result
-	 */
-	public T getResult() {
-		return result;
-	}
-	
-	/**
-	 * @return the errorMessage
-	 */
-	public String getErrorMessage() {
-		return errorMessage;
-	}
-	
-	/**
-	 * @return the errorTime
-	 */
-	public Long getErrorTime() {
-		return errorTime;
 	}
 }

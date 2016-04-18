@@ -9,6 +9,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
+import lombok.Data;
+
 /**
  * <p>
  * ActionRequest class.
@@ -16,6 +18,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
  * 
  * @author Rafael Ortiz.
  */
+@Data
 public class ActionRequest implements Serializable {
 
 	/** Constant <code>serialVersionUID=3023428773679232526L</code> */
@@ -35,62 +38,6 @@ public class ActionRequest implements Serializable {
 	
 	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date dueDate;
-
-	/**
-	 * @return the id
-	 */
-	public Integer getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
-	 * @return the createdDate
-	 */
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-
-	/**
-	 * @param createdDate the createdDate to set
-	 */
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	/**
-	 * @return the dueDate
-	 */
-	public Date getDueDate() {
-		return dueDate;
-	}
-
-	/**
-	 * @param dueDate the dueDate to set
-	 */
-	public void setDueDate(Date dueDate) {
-		this.dueDate = dueDate;
-	}
 	
 	/**
 	 * <p>

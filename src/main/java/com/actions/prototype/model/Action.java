@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import com.actions.prototype.common.JsonDateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import lombok.Data;
+
 /**
  * <p>
  * Action class.
@@ -20,6 +22,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * 
  * @author Rafael Ortiz.
  */
+@Data
 @Entity
 @Table(name = "Action")
 public class Action implements Serializable {
@@ -28,74 +31,18 @@ public class Action implements Serializable {
 	private static final long serialVersionUID = -8499257725243365603L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column
 	private String name;
 	
 	@Column
+	@JsonSerialize(using = JsonDateSerializer.class)
 	private Date createdDate;
 	
 	@Column
+	@JsonSerialize(using = JsonDateSerializer.class)
 	private Date dueDate;
-	
-	/**
-	 * @return the id
-	 */
-	public Integer getId() {
-		return id;
-	}
-	
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-	
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	/**
-	 * @return the createdDate
-	 */
-	@JsonSerialize(using = JsonDateSerializer.class)
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-	
-	/**
-	 * @param createdDate the createdDate to set
-	 */
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-	
-	/**
-	 * @return the dueDate
-	 */
-	@JsonSerialize(using = JsonDateSerializer.class)
-	public Date getDueDate() {
-		return dueDate;
-	}
-	
-	/**
-	 * @param dueDate the dueDate to set
-	 */
-	public void setDueDate(Date dueDate) {
-		this.dueDate = dueDate;
-	}
 }
