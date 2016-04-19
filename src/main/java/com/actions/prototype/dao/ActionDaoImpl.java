@@ -52,30 +52,30 @@ public class ActionDaoImpl implements ActionDao {
 	
 	/** {@inheritDoc} */
 	@Override
-	public void insert(Action action) {
+	public Boolean insert(Action action) {
 		final MapSqlParameterSource paramMap = new MapSqlParameterSource();
 		paramMap.addValue("id", action.getId());
 		paramMap.addValue("name", action.getName());
 		paramMap.addValue("createdDate", action.getCreatedDate());
 		paramMap.addValue("dueDate", action.getDueDate());
-		jdbcTemplate.update("INSERT INTO Action VALUES(:id, :name, :createdDate, :dueDate)", paramMap);
+		return jdbcTemplate.update("INSERT INTO Action VALUES(:id, :name, :createdDate, :dueDate)", paramMap) == 1;
 	}
 	
 	/** {@inheritDoc} */
 	@Override
-	public void update(Action action) {
+	public Boolean update(Action action) {
 		final MapSqlParameterSource paramMap = new MapSqlParameterSource();
 		paramMap.addValue("id", action.getId());
 		paramMap.addValue("name", action.getName());
 		paramMap.addValue("createdDate", action.getCreatedDate());
 		paramMap.addValue("dueDate", action.getDueDate());
-		jdbcTemplate.update("UPDATE Action SET name = :name, createdDate :createdDate, dueDate = :dueDate WHERE id = :id", paramMap);
+		return jdbcTemplate.update("UPDATE Action SET name = :name, createdDate :createdDate, dueDate = :dueDate WHERE id = :id", paramMap) == 1;
 	}
 	
 	/** {@inheritDoc} */
 	@Override
-	public void delete(Integer id) {
-		jdbcTemplate.update("DELETE FROM Action WHERE id = :id", new MapSqlParameterSource("id", id));
+	public Boolean delete(Integer id) {
+		return jdbcTemplate.update("DELETE FROM Action WHERE id = :id", new MapSqlParameterSource("id", id)) == 1;
 	}
 	
 	/** {@inheritDoc} */

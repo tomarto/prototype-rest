@@ -35,8 +35,10 @@ public interface ActionDao {
 	 * 
 	 * @param action
 	 *            a {@link com.actions.prototype.model.Action} object.
+	 * 
+	 * @return a {@link java.lang.Boolean} object.
 	 */
-	void insert(Action action);
+	Boolean insert(Action action);
 	
 	/**
 	 * <p>
@@ -45,8 +47,10 @@ public interface ActionDao {
 	 * 
 	 * @param action
 	 *            a {@link com.actions.prototype.model.Action} object.
+	 * 
+	 * @return a {@link java.lang.Boolean} object.
 	 */
-	void update(Action action);
+	Boolean update(Action action);
 	
 	/**
 	 * <p>
@@ -55,8 +59,10 @@ public interface ActionDao {
 	 * 
 	 * @param id
 	 *            a {@link java.lang.Integer} object.
+	 * 
+	 * @return a {@link java.lang.Boolean} object.
 	 */
-	void delete(Integer id);
+	Boolean delete(Integer id);
 	
 	/**
 	 * @param name the name to set. For unit test purposes.

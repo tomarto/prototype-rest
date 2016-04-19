@@ -33,9 +33,9 @@ public interface UserDao {
 	 * @param user
 	 *            a {@link com.actions.prototype.model.User} object.
 	 *            
-	 * @return an int primitive type.
+	 * @return a {@link java.lang.Boolean} object.
 	 */
-	int insert(User user);
+	Boolean insert(User user);
 	
 	/**
 	 * <p>
@@ -45,9 +45,9 @@ public interface UserDao {
 	 * @param user
 	 *            a {@link com.actions.prototype.model.User} object.
 	 *            
-	 * @return an int primitive type.
+	 * @return a {@link java.lang.Boolean} object.
 	 */
-	int update(User user);
+	Boolean update(User user);
 	
 	/**
 	 * @param name the name to set. For unit test purposes.

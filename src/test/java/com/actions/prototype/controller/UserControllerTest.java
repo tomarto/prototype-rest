@@ -13,10 +13,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import com.actions.prototype.command.user.FindUserCommand;
+import com.actions.prototype.command.user.InsertUserCommand;
+import com.actions.prototype.command.user.UpdateUserCommand;
+import com.actions.prototype.command.user.UserCommandFactory;
 import com.actions.prototype.model.Response;
 import com.actions.prototype.model.User;
 import com.actions.prototype.model.UserRequest;
-import com.actions.prototype.service.UserService;
+
+import rx.Observable;
 
 /**
  * <p>
@@ -34,7 +39,16 @@ public class UserControllerTest {
 	private UserRequest request;
 	
 	@Mock
-	private UserService service;
+	private UserCommandFactory factory;
+	
+	@Mock
+	private FindUserCommand findUserCommand;
+	
+	@Mock
+	private InsertUserCommand insertUserCommand;
+	
+	@Mock
+	private UpdateUserCommand updateUserCommand;
 	
 	@Mock
 	private Authentication authentication;
@@ -50,7 +64,7 @@ public class UserControllerTest {
 		when(authentication.getName()).thenReturn(USERNAME);
 		when(securityContext.getAuthentication()).thenReturn(authentication);
 		SecurityContextHolder.setContext(securityContext);
-		ctrl = new UserController(service);
+		ctrl = new UserController(factory);
 		request = new UserRequest();
 		request.setUsername(USERNAME);
 		request.setFirstName("FN");
@@ -64,7 +78,8 @@ public class UserControllerTest {
 	 */
 	@Test
 	public void testFind() {
-		when(service.getUser(USERNAME)).thenReturn(User.builder().build());
+		when(factory.createFindUserCommand(USERNAME)).thenReturn(findUserCommand);
+		when(findUserCommand.observe()).thenReturn(Observable.just(User.builder().build()));
 		final Response<User> result = ctrl.find();
 		assertNotNull(result);
 		assertNull(result.getErrorTime());
@@ -76,7 +91,8 @@ public class UserControllerTest {
 	@Test
 	public void testRegister() {
 		final User user = request.buildUser();
-		when(service.insert(user)).thenReturn(user);
+		when(factory.createInsertActionCommand(user)).thenReturn(insertUserCommand);
+		when(insertUserCommand.observe()).thenReturn(Observable.just(user));
 		final Response<User> result = ctrl.register(request);
 		assertNotNull(result);
 		assertNull(result.getErrorTime());
@@ -88,7 +104,8 @@ public class UserControllerTest {
 	@Test
 	public void testUpdate() {
 		final User user = request.buildUser();
-		when(service.update(USERNAME, user)).thenReturn(user);
+		when(factory.createUpdateActionCommand(user)).thenReturn(updateUserCommand);
+		when(updateUserCommand.observe()).thenReturn(Observable.just(user));
 		final Response<User> result = ctrl.update(request);
 		assertNotNull(result);
 		assertNull(result.getErrorTime());

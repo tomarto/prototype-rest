@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.actions.prototype.command.user.UserCommandFactory;
 import com.actions.prototype.model.Response;
 import com.actions.prototype.model.User;
 import com.actions.prototype.model.UserRequest;
-import com.actions.prototype.service.UserService;
 
 /**
  * <p>
@@ -28,19 +28,19 @@ import com.actions.prototype.service.UserService;
 @Controller
 public class UserController {
 
-	private UserService service;
+	private UserCommandFactory factory;
 	
 	/**
 	 * <p>
 	 * Constructor for UserController.
 	 * </p>
 	 * 
-	 * @param service
-	 *            a {@link com.actions.prototype.service.UserService} object.
+	 * @param factory
+	 *            a {@link com.actions.prototype.command.user.UserCommandFactory} object.
 	 */
 	@Autowired
-	public UserController(UserService service) {
-		this.service = service;
+	public UserController(UserCommandFactory factory) {
+		this.factory = factory;
 	}
 	
 	/**
@@ -52,7 +52,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/user", method = POST, produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
 	public @ResponseBody Response<User> find() {
-		return new Response<>(service.getUser(getLoggedUsername()));
+		return new Response<>(factory.createFindUserCommand(getLoggedUsername()).observe().toBlocking().single());
 	}
 	
 	/**
@@ -64,7 +64,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/user/register", method = POST, produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
 	public @ResponseBody Response<User> register(@Valid @RequestBody UserRequest request) {
-		return new Response<>(service.insert(request.buildUser()));
+		return new Response<>(factory.createInsertActionCommand(request.buildUser()).observe().toBlocking().single());
 	}
 	
 	/**
@@ -76,7 +76,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/user/update", method = PUT, produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
 	public @ResponseBody Response<User> update(@Valid @RequestBody UserRequest request) {
-		return new Response<>(service.update(getLoggedUsername(), request.buildUser()));
+		return new Response<>(factory.createUpdateActionCommand(request.buildUser()).observe().toBlocking().single());
 	}
 	
 	/**

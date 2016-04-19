@@ -14,10 +14,13 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import com.actions.prototype.command.action.ActionCommandFactory;
+import com.actions.prototype.command.action.FindAllActionsCommand;
 import com.actions.prototype.model.Action;
 import com.actions.prototype.model.ActionRequest;
 import com.actions.prototype.model.Response;
-import com.actions.prototype.service.ActionService;
+
+import rx.Observable;
 
 /**
  * <p>
@@ -28,18 +31,21 @@ import com.actions.prototype.service.ActionService;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class ActionControllerTest {
-
+	
 	private ActionController ctrl;
 	
 	@Mock
-	private ActionService service;
+	private ActionCommandFactory factory;
+	
+	@Mock
+	private FindAllActionsCommand command;
 	
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		ctrl = new ActionController(service);
+		ctrl = new ActionController(factory);
 	}
 	
 	/**
@@ -50,7 +56,8 @@ public class ActionControllerTest {
 		final ActionRequest request = new ActionRequest();
 		final List<Action> list = new ArrayList<>();
 		list.add(Action.builder().build());
-		when(service.findAll(request)).thenReturn(list);
+		when(factory.createFindAllActionsCommand(request)).thenReturn(command);
+		when(command.observe()).thenReturn(Observable.just(list));
 		final Response<List<Action>> result = ctrl.findAll(request);
 		assertNotNull(result);
 		assertNull(result.getErrorTime());

@@ -20,7 +20,7 @@ import com.actions.prototype.model.User;
  */
 @Repository
 public class UserDaoImpl implements UserDao {
-
+	
 	private NamedParameterJdbcTemplate jdbcTemplate;
 	
 	/**
@@ -54,15 +54,15 @@ public class UserDaoImpl implements UserDao {
 							.birthDate(rs.getDate("birthDate"))
 							.type(rs.getString("role")).build();
 					});
-		} catch(IncorrectResultSizeDataAccessException e) {
+		} catch (IncorrectResultSizeDataAccessException e) {
 			return null;
 		}
 	}
 	
 	/** {@inheritDoc} */
 	@Override
-	public int insert(User user) {
-		if(findByUsername(user.getUsername()) == null) {
+	public Boolean insert(User user) {
+		if (findByUsername(user.getUsername()) == null) {
 			final MapSqlParameterSource userParamMap = new MapSqlParameterSource();
 			userParamMap.addValue("username", user.getUsername());
 			userParamMap.addValue("firstName", user.getFirstName());
@@ -70,20 +70,22 @@ public class UserDaoImpl implements UserDao {
 			userParamMap.addValue("password", user.getPassword());
 			userParamMap.addValue("email", user.getEmail());
 			userParamMap.addValue("birthDate", user.getBirthDate());
-			if(jdbcTemplate.update("INSERT INTO User VALUES(:username, :firstName, :lastName, :password, :email, :birthDate, TRUE)", userParamMap) == 1) {
+			if (jdbcTemplate.update("INSERT INTO User VALUES(:username, :firstName, :lastName, :password, :email, :birthDate, TRUE)", userParamMap) == 1) {
 				final MapSqlParameterSource userRoleParamMap = new MapSqlParameterSource();
 				userRoleParamMap.addValue("username", user.getUsername());
 				userRoleParamMap.addValue("role", user.getType());
-				return jdbcTemplate.update("INSERT INTO User_roles(username, role) VALUES(:username, :role);", userRoleParamMap);
+				return jdbcTemplate.update("INSERT INTO User_roles(username, role) VALUES(:username, :role);", userRoleParamMap) == 1;
 			}
-			return 0;
+			
+			return false;
 		}
+		
 		throw new UserException("Username already exist. Please use another one.");
 	}
 	
 	/** {@inheritDoc} */
 	@Override
-	public int update(User user) {
+	public Boolean update(User user) {
 		final MapSqlParameterSource paramMap = new MapSqlParameterSource();
 		paramMap.addValue("username", user.getUsername());
 		paramMap.addValue("firstName", user.getFirstName());
@@ -92,7 +94,7 @@ public class UserDaoImpl implements UserDao {
 		paramMap.addValue("email", user.getEmail());
 		paramMap.addValue("birthDate", user.getBirthDate());
 		return jdbcTemplate.update("UPDATE User SET username = :username, first_name = :firstName, last_name = :lastName, "
-				+ "password = :password, email = :email, birth_date = :birthDate, enabled = :enabled", paramMap);
+				+ "password = :password, email = :email, birth_date = :birthDate, enabled = :enabled", paramMap) == 1;
 	}
 	
 	/** {@inheritDoc} */
