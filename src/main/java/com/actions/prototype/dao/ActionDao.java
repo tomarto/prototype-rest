@@ -1,11 +1,10 @@
 package com.actions.prototype.dao;
 
-import java.util.List;
-
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-import com.actions.prototype.model.Action;
-import com.actions.prototype.model.ActionRequest;
+import com.actions.prototype.model.resource.action.Action;
+import com.actions.prototype.model.resource.action.ActionListResponse;
+import com.actions.prototype.request.action.ActionRequest;
 
 /**
  * <p>
@@ -22,11 +21,11 @@ public interface ActionDao {
 	 * </p>
 	 * 
 	 * @param request
-	 *            a {@link com.actions.prototype.model.ActionRequest} object.
+	 *            a {@link com.actions.prototype.request.action.ActionRequest} object.
 	 *            
-	 * @return a {@link java.util.List<Action>} object.
+	 * @return a {@link com.actions.prototype.model.resource.action.ActionListResponse} object.
 	 */
-	List<Action> findAll(ActionRequest request);
+	ActionListResponse findAll(ActionRequest request);
 	
 	/**
 	 * <p>
@@ -34,7 +33,7 @@ public interface ActionDao {
 	 * </p>
 	 * 
 	 * @param action
-	 *            a {@link com.actions.prototype.model.Action} object.
+	 *            a {@link com.actions.prototype.model.resource.action.Action} object.
 	 * 
 	 * @return a {@link java.lang.Boolean} object.
 	 */
@@ -46,7 +45,7 @@ public interface ActionDao {
 	 * </p>
 	 * 
 	 * @param action
-	 *            a {@link com.actions.prototype.model.Action} object.
+	 *            a {@link com.actions.prototype.model.resource.action.Action} object.
 	 * 
 	 * @return a {@link java.lang.Boolean} object.
 	 */

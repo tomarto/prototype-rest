@@ -1,4 +1,4 @@
-package com.actions.prototype.model;
+package com.actions.prototype.request.user;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.actions.prototype.exception.user.UserException;
+import com.actions.prototype.model.resource.user.User;
 
 import lombok.Setter;
 

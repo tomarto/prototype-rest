@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.actions.prototype.command.ObservableCommand;
 import com.actions.prototype.dao.ActionDao;
-import com.actions.prototype.model.Action;
+import com.actions.prototype.model.resource.action.Action;
 
 import lombok.Setter;
 import rx.Observable;

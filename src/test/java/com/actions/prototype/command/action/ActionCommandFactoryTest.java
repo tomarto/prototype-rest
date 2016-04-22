@@ -8,8 +8,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.actions.prototype.model.Action;
-import com.actions.prototype.model.ActionRequest;
+import com.actions.prototype.model.resource.action.Action;
+import com.actions.prototype.request.action.ActionRequest;
 
 /**
  * <p>

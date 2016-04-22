@@ -11,7 +11,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.actions.prototype.dao.ActionDao;
-import com.actions.prototype.model.Action;
+import com.actions.prototype.model.resource.action.Action;
 
 /**
  * <p>

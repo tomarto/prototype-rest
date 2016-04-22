@@ -1,7 +1,5 @@
 package com.actions.prototype.dao;
 
-import java.util.List;
-
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +7,9 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.actions.prototype.model.Action;
-import com.actions.prototype.model.ActionRequest;
+import com.actions.prototype.model.resource.action.Action;
+import com.actions.prototype.model.resource.action.ActionListResponse;
+import com.actions.prototype.request.action.ActionRequest;
 
 /**
  * <p>
@@ -39,15 +38,18 @@ public class ActionDaoImpl implements ActionDao {
 	
 	/** {@inheritDoc} */
 	@Override
-	public List<Action> findAll(ActionRequest request) {
-		return jdbcTemplate.query(request.getQueryString(), request.getSqlParamMap(),
-				(rs, rowNum) -> {
-					return Action.builder()
-						.id(rs.getInt("id"))
-						.name(rs.getString("name"))
-						.createdDate(rs.getDate("created_date"))
-						.dueDate(rs.getDate("due_date")).build();
-				});
+	public ActionListResponse findAll(ActionRequest request) {
+		return ActionListResponse.builder()
+				.actions(jdbcTemplate.query(request.getFindQueryString(), request.getSqlParamMap(),
+						(rs, rowNum) -> {
+							return Action.builder()
+								.id(rs.getInt("id"))
+								.name(rs.getString("name"))
+								.createdDate(rs.getDate("created_date"))
+								.dueDate(rs.getDate("due_date")).build();
+						}))
+				.total(jdbcTemplate.queryForObject(request.getCountQueryString(), request.getSqlParamMap(), Integer.class))
+				.build();
 	}
 	
 	/** {@inheritDoc} */

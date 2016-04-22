@@ -3,8 +3,6 @@ package com.actions.prototype.controller;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.actions.prototype.command.action.ActionCommandFactory;
-import com.actions.prototype.model.Action;
-import com.actions.prototype.model.ActionRequest;
-import com.actions.prototype.model.Response;
+import com.actions.prototype.model.resource.Response;
+import com.actions.prototype.model.resource.action.ActionListResponse;
+import com.actions.prototype.request.action.ActionRequest;
 
 /**
  * <p>
@@ -50,7 +48,7 @@ public class ActionController {
 	 * @return a {@link com.actions.prototype.model.Response<List<Action>>} object.
 	 */
 	@RequestMapping(value = "/actions", method = GET, produces = APPLICATION_JSON_VALUE)
-	public @ResponseBody Response<List<Action>> findAll(@Valid ActionRequest request) {
+	public @ResponseBody Response<ActionListResponse> findAll(@Valid ActionRequest request) {
 		return new Response<>(factory.createFindAllActionsCommand(request).observe().toBlocking().single());
 	}
 }

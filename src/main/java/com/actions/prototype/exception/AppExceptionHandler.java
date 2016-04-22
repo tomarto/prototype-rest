@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.actions.prototype.model.Response;
+import com.actions.prototype.model.resource.Response;
 
 /**
  * <p>

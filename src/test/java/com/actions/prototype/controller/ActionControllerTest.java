@@ -16,9 +16,10 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import com.actions.prototype.command.action.ActionCommandFactory;
 import com.actions.prototype.command.action.FindAllActionsCommand;
-import com.actions.prototype.model.Action;
-import com.actions.prototype.model.ActionRequest;
-import com.actions.prototype.model.Response;
+import com.actions.prototype.model.resource.Response;
+import com.actions.prototype.model.resource.action.Action;
+import com.actions.prototype.model.resource.action.ActionListResponse;
+import com.actions.prototype.request.action.ActionRequest;
 
 import rx.Observable;
 
@@ -57,10 +58,10 @@ public class ActionControllerTest {
 		final List<Action> list = new ArrayList<>();
 		list.add(Action.builder().build());
 		when(factory.createFindAllActionsCommand(request)).thenReturn(command);
-		when(command.observe()).thenReturn(Observable.just(list));
-		final Response<List<Action>> result = ctrl.findAll(request);
+		when(command.observe()).thenReturn(Observable.just(ActionListResponse.builder().actions(list).build()));
+		final Response<ActionListResponse> result = ctrl.findAll(request);
 		assertNotNull(result);
 		assertNull(result.getErrorTime());
-		assertFalse(result.getResult().isEmpty());
+		assertFalse(result.getResult().getActions().isEmpty());
 	}
 }

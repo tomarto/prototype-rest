@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.actions.prototype.exception.user.UserException;
-import com.actions.prototype.model.User;
+import com.actions.prototype.model.resource.user.User;
 
 /**
  * <p>

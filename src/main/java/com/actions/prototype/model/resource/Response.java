@@ -1,4 +1,4 @@
-package com.actions.prototype.model;
+package com.actions.prototype.model.resource;
 
 import java.io.Serializable;
 

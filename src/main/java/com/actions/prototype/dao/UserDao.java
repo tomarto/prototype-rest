@@ -2,7 +2,7 @@ package com.actions.prototype.dao;
 
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-import com.actions.prototype.model.User;
+import com.actions.prototype.model.resource.user.User;
 
 /**
  * <p>
@@ -21,7 +21,7 @@ public interface UserDao {
 	 * @param username
 	 *            a {@link java.lang.String} object.
 	 * 
-	 * @return a {@link com.actions.prototype.model.User} object.
+	 * @return a {@link com.actions.prototype.model.resource.user.User} object.
 	 */
 	User findByUsername(String username);
 	
@@ -31,7 +31,7 @@ public interface UserDao {
 	 * </p>
 	 * 
 	 * @param user
-	 *            a {@link com.actions.prototype.model.User} object.
+	 *            a {@link com.actions.prototype.model.resource.user.User} object.
 	 *            
 	 * @return a {@link java.lang.Boolean} object.
 	 */
@@ -43,7 +43,7 @@ public interface UserDao {
 	 * </p>
 	 * 
 	 * @param user
-	 *            a {@link com.actions.prototype.model.User} object.
+	 *            a {@link com.actions.prototype.model.resource.user.User} object.
 	 *            
 	 * @return a {@link java.lang.Boolean} object.
 	 */

@@ -17,9 +17,9 @@ import com.actions.prototype.command.user.FindUserCommand;
 import com.actions.prototype.command.user.InsertUserCommand;
 import com.actions.prototype.command.user.UpdateUserCommand;
 import com.actions.prototype.command.user.UserCommandFactory;
-import com.actions.prototype.model.Response;
-import com.actions.prototype.model.User;
-import com.actions.prototype.model.UserRequest;
+import com.actions.prototype.model.resource.Response;
+import com.actions.prototype.model.resource.user.User;
+import com.actions.prototype.request.user.UserRequest;
 
 import rx.Observable;
 
@@ -86,7 +86,7 @@ public class UserControllerTest {
 	}
 
 	/**
-	 * Test method for {@link com.actions.prototype.controller.UserControllerTest#register(com.actions.prototype.model.UserRequest)}.
+	 * Test method for {@link com.actions.prototype.controller.UserControllerTest#register(com.actions.prototype.request.user.UserRequest)}.
 	 */
 	@Test
 	public void testRegister() {
@@ -99,7 +99,7 @@ public class UserControllerTest {
 	}
 
 	/**
-	 * Test method for {@link com.actions.prototype.controller.UserControllerTest#update(com.actions.prototype.model.UserRequest)}.
+	 * Test method for {@link com.actions.prototype.controller.UserControllerTest#update(com.actions.prototype.request.user.UserRequest)}.
 	 */
 	@Test
 	public void testUpdate() {

@@ -1,4 +1,4 @@
-package com.actions.prototype.model;
+package com.actions.prototype.model.resource.user;
 
 import java.io.Serializable;
 import java.util.Date;

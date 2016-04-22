@@ -21,8 +21,9 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-import com.actions.prototype.model.Action;
-import com.actions.prototype.model.ActionRequest;
+import com.actions.prototype.model.resource.action.Action;
+import com.actions.prototype.model.resource.action.ActionListResponse;
+import com.actions.prototype.request.action.ActionRequest;
 
 /**
  * <p>
@@ -62,13 +63,13 @@ public class ActionDaoImplTest {
 		final List<Action> list = new ArrayList<>();
 		list.add(action);
 		when(jdbcTemplate.query(anyString(), any(MapSqlParameterSource.class), any(RowMapper.class))).thenReturn(list);
-		final List<Action> result = dao.findAll(new ActionRequest());
+		final ActionListResponse result = dao.findAll(new ActionRequest());
 		assertNotNull(result);
-		assertFalse(result.isEmpty());
+		assertFalse(result.getActions().isEmpty());
 	}
 
 	/**
-	 * Test method for {@link com.actions.prototype.dao.ActionDaoImpl#insert(com.actions.prototype.model.Action)}.
+	 * Test method for {@link com.actions.prototype.dao.ActionDaoImpl#insert(com.actions.prototype.model.resource.action.Action)}.
 	 */
 	@Test
 	public void testInsert() {
@@ -77,7 +78,7 @@ public class ActionDaoImplTest {
 	}
 
 	/**
-	 * Test method for {@link com.actions.prototype.dao.ActionDaoImpl#update(com.actions.prototype.model.Action)}.
+	 * Test method for {@link com.actions.prototype.dao.ActionDaoImpl#update(com.actions.prototype.model.resource.action.Action)}.
 	 */
 	@Test
 	public void testUpdate() {

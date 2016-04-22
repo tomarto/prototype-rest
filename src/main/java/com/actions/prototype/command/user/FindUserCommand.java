@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.actions.prototype.command.ObservableCommand;
 import com.actions.prototype.dao.UserDao;
-import com.actions.prototype.model.User;
+import com.actions.prototype.model.resource.user.User;
 
 import lombok.Setter;
 import rx.Observable;

@@ -1,13 +1,12 @@
 package com.actions.prototype.command.action;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.actions.prototype.command.ObservableCommand;
-import com.actions.prototype.model.Action;
-import com.actions.prototype.model.ActionRequest;
+import com.actions.prototype.model.resource.action.Action;
+import com.actions.prototype.model.resource.action.ActionListResponse;
+import com.actions.prototype.request.action.ActionRequest;
 
 /**
  * <p>
@@ -53,11 +52,11 @@ public class ActionCommandFactory {
 	 * </p>
 	 * 
 	 * @param request
-	 *            a {@link com.actions.prototype.model.ActionRequest} object.
+	 *            a {@link com.actions.prototype.request.action.ActionRequest} object.
 	 *            
-	 * @return an {@link com.actions.prototype.command.ObservableCommand<List<Action>>} object.
+	 * @return an {@link com.actions.prototype.command.ObservableCommand<ActionListResponse>} object.
 	 */
-	public ObservableCommand<List<Action>> createFindAllActionsCommand(ActionRequest request) {
+	public ObservableCommand<ActionListResponse> createFindAllActionsCommand(ActionRequest request) {
 		findAllActionsCommand.setRequest(request);
 		return findAllActionsCommand;
 	}
@@ -68,7 +67,7 @@ public class ActionCommandFactory {
 	 * </p>
 	 * 
 	 * @param action
-	 *            a {@link com.actions.prototype.model.Action} object.
+	 *            a {@link com.actions.prototype.model.resource.action.Action} object.
 	 *            
 	 * @return an {@link com.actions.prototype.command.ObservableCommand<Boolean>} object.
 	 */
@@ -83,7 +82,7 @@ public class ActionCommandFactory {
 	 * </p>
 	 * 
 	 * @param action
-	 *            a {@link com.actions.prototype.model.Action} object.
+	 *            a {@link com.actions.prototype.model.resource.action.Action} object.
 	 *            
 	 * @return an {@link com.actions.prototype.command.ObservableCommand<Boolean>} object.
 	 */

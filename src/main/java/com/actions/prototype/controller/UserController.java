@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.actions.prototype.command.user.UserCommandFactory;
-import com.actions.prototype.model.Response;
-import com.actions.prototype.model.User;
-import com.actions.prototype.model.UserRequest;
+import com.actions.prototype.model.resource.Response;
+import com.actions.prototype.model.resource.user.User;
+import com.actions.prototype.request.user.UserRequest;
 
 /**
  * <p>

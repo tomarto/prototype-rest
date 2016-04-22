@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.actions.prototype.command.ObservableCommand;
-import com.actions.prototype.model.User;
+import com.actions.prototype.model.resource.user.User;
 
 /**
  * <p>
@@ -61,7 +61,7 @@ public class UserCommandFactory {
 	 * </p>
 	 * 
 	 * @param user
-	 *            a {@link com.actions.prototype.model.User} object.
+	 *            a {@link com.actions.prototype.model.resource.user.User} object.
 	 *            
 	 * @return an {@link com.actions.prototype.command.ObservableCommand<User>} object.
 	 */
@@ -76,7 +76,7 @@ public class UserCommandFactory {
 	 * </p>
 	 * 
 	 * @param user
-	 *            a {@link com.actions.prototype.model.User} object.
+	 *            a {@link com.actions.prototype.model.resource.user.User} object.
 	 *            
 	 * @return an {@link com.actions.prototype.command.ObservableCommand<User>} object.
 	 */

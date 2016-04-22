@@ -21,7 +21,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import com.actions.prototype.exception.user.UserException;
-import com.actions.prototype.model.User;
+import com.actions.prototype.model.resource.user.User;
 
 /**
  * <p>
@@ -68,7 +68,7 @@ public class UserDaoImplTest {
 	}
 
 	/**
-	 * Test method for {@link com.actions.prototype.dao.UserDaoImpl#insert(com.actions.prototype.model.User)}.
+	 * Test method for {@link com.actions.prototype.dao.UserDaoImpl#insert(com.actions.prototype.model.resource.user.User)}.
 	 */
 	@SuppressWarnings("unchecked")
 	@Test
@@ -83,7 +83,7 @@ public class UserDaoImplTest {
 	}
 	
 	/**
-	 * Test method for {@link com.actions.prototype.dao.UserDaoImpl#insert(com.actions.prototype.model.User)}.
+	 * Test method for {@link com.actions.prototype.dao.UserDaoImpl#insert(com.actions.prototype.model.resource.user.User)}.
 	 */
 	@SuppressWarnings("unchecked")
 	@Test(expected = UserException.class)
@@ -95,7 +95,7 @@ public class UserDaoImplTest {
 	}
 
 	/**
-	 * Test method for {@link com.actions.prototype.dao.UserDaoImpl#update(com.actions.prototype.model.User)}.
+	 * Test method for {@link com.actions.prototype.dao.UserDaoImpl#update(com.actions.prototype.model.resource.user.User)}.
 	 */
 	@Test
 	public void testUpdate() {

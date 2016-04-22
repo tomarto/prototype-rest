@@ -14,8 +14,9 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.actions.prototype.dao.ActionDao;
-import com.actions.prototype.model.Action;
-import com.actions.prototype.model.ActionRequest;
+import com.actions.prototype.model.resource.action.Action;
+import com.actions.prototype.model.resource.action.ActionListResponse;
+import com.actions.prototype.request.action.ActionRequest;
 
 /**
  * <p>
@@ -53,9 +54,9 @@ public class FindAllActionsCommandTest {
 		command.setRequest(request);
 		final List<Action> list = new ArrayList<>();
 		list.add(action);
-		when(dao.findAll(request)).thenReturn(list);
-		final List<Action> result = command.observe().toBlocking().single();
+		when(dao.findAll(request)).thenReturn(ActionListResponse.builder().actions(list).build());
+		final ActionListResponse result = command.observe().toBlocking().single();
 		assertNotNull(result);
-		assertFalse(result.isEmpty());
+		assertFalse(result.getActions().isEmpty());
 	}
 }
